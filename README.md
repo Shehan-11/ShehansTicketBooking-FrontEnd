@@ -1,70 +1,256 @@
-# Getting Started with Create React App
+# Shehan's Ticket Booking System
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🎫 Project Overview
 
-## Available Scripts
+Shehan's Ticket Booking System is a web application designed to simulate the ticket booking process. This project provides an efficient and user-friendly platform for managing tickets, adding tickets and purchasing the tickets.
 
-In the project directory, you can run:
+### Key Features
+- Easy to setup
+- User-friendly Configuration interface
+- Real-time ticket status
+- Easy to Start and Stop the Simulation
+- Comprehensive backend with Spring Boot
+- Modern frontend using React
+- Database persistence with MySQL
 
-### `npm start`
+## 🚀 Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Prerequisites
+- Java Development Kit (JDK) 11 or higher
+- Spring Boot 3.3.5
+- Maven
+- MySQL Database
+- React 19+
+- Node.js 16+ and npm
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### System Requirements
+- Operating System: Windows, macOS, or Linux
+- RAM: 8GB minimum (16GB recommended)
+- Disk Space: 2GB free space
 
-### `npm test`
+### Installation Steps
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Shehan-11/ShehansTicketBooking.git
+   cd ShehansTicketBooking
+   ```
 
-### `npm run build`
+2. Configure Database
+   - Create a MySQL database named `oopdb`
+   - Update database credentials in `src/main/resources/application.properties`
+   ```properties
+   spring.datasource.url=jdbc:mysql://localhost:3306/oopdb
+   spring.datasource.username=your_username
+   spring.datasource.password=your_password
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Build the Project
+   ```bash
+   mvn clean install
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Run the Application
+   ```bash
+   mvn spring-boot:run
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+5. Access the Application
+   - Open your browser and navigate to `http://localhost:8080`
 
-### `npm run eject`
+## 🛠️ Technology Stack
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend
+- **Framework**: Spring Boot 3.3.5
+- **Java Version**: JDK 17
+- **Dependencies**:
+  - Spring Boot Starter Data JPA
+  - Spring Boot Starter Web
+  - MySQL Connector
+  - Spring Boot DevTools
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Frontend
+- **Framework**: React 19
+- **Key Libraries**:
+  - React Router DOM (v7)
+  - Axios for HTTP requests
+  - Chart.js for data visualization
+  - Bootstrap 5 for styling
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Database
+- MySQL Database
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Build Tools
+- Maven (Backend)
+- npm (Frontend)
 
-## Learn More
+### Backend Startup
+1. Navigate to `com/example/ShehansTicketBooking/Backend/ShehansTicketBookingApplication.java`
+2. Run the Spring Boot application
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Frontend Startup
+Follow the Create React App standard procedures:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Available Scripts
 
-### Code Splitting
+##### `npm start`
+- Runs the app in development mode
+- Access at [http://localhost:3000](http://localhost:3000)
+- Automatic page reloads on changes
+- Lint errors displayed in console
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+##### `npm test`
+- Launches test runner in interactive watch mode
+- Detailed test running information available at [Create React App Testing](https://facebook.github.io/create-react-app/docs/running-tests)
 
-### Analyzing the Bundle Size
+##### `npm run build`
+- Builds production-ready app in `build` folder
+- Optimizes React for best performance
+- Minifies and hash-names files
+- Ready for deployment
+- Deployment details at [Create React App Deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+##### `npm run eject`
+**Note: Irreversible one-way operation**
+- Removes single build dependency
+- Copies configuration files and transitive dependencies
+- Provides full control over webpack, Babel, ESLint configurations
+- Use cautiously, as this action cannot be undone
 
-### Making a Progressive Web App
+## 🔧 API Reference
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Configuration Endpoints
 
-### Advanced Configuration
+#### Create Configuration
+```http
+POST /api/configuration/createConfig
+```
+**Sample Configuration JSON**:
+```json
+{
+    "maxTicketCapacity": 200,
+    "totalTickets": 5,
+    "ticketReleaseRate": 1,
+    "customerRetrievalRate": 1
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+#### Retrieve Last Configuration
+```http
+GET /api/configuration/getLastConfig
+```
 
-### Deployment
+### Simulation Control Endpoints
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+#### Start Simulation
+```http
+POST /api/tickets/start
+```
+- Requires empty request body
 
-### `npm run build` fails to minify
+#### Stop Simulation
+```http
+POST /api/tickets/stop
+```
+- Requires empty request body
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Monitor Ticket Status
+```http
+GET /api/tickets/monitor
+```
+
+## 📦 Project Structure
+
+```
+ShehansTicketBooking/
+│
+├── backend/                # Backend system for managing data and business logic
+│   ├── .mvn/               # Maven wrapper files for project management
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/example/ShehansTicketBooking/
+│   │   │   │   ├── Backend/
+│   │   │   │   │   ├── Controller/
+│   │   │   │   │   │   ├── ConfigurationController.java    # Handles configurations API endpoints
+│   │   │   │   │   │   └── TicketsController.java          # Handles ticket-related API endpoints
+│   │   │   │   │   ├── Enums/
+│   │   │   │   │   │   └── SystemStatus.java               # Enum for system statuses
+│   │   │   │   │   ├── Exceptions/
+│   │   │   │   │   │   └── ResourceNotFoundException.java  # Custom exception for missing resources
+│   │   │   │   │   ├── Models/
+│   │   │   │   │   │   ├── Configuration.java              # Model for system configurations
+│   │   │   │   │   │   ├── Customers.java                  # Model for customer details
+│   │   │   │   │   │   ├── ThreadsManager.java             # Manages threads for ticketing
+│   │   │   │   │   │   ├── TicketPool.java                 # Manages ticket availability
+│   │   │   │   │   │   └── Vendors.java                    # Model for vendor information
+│   │   │   │   │   ├── Repo/
+│   │   │   │   │   │   └── ConfigurationRepo.java          # Repository for accessing configurations
+│   │   │   │   │   ├── Services/
+│   │   │   │   │   │   └── ConfigurationService.java       # Service layer for configurations logic
+│   │   │   │   │   └── ShehansTicketBookingApplication.java # Main application entry point
+│   │   │   └── CLI/                                        # Command Line Interface implementation
+│   │   └── resources/                                      # Application resources
+│   └── test/java/com/example/ShehansTicketBooking/         # Unit and integration tests
+│   └── pom.xml                                             # Maven project configuration
+│
+├── frontend/               # Frontend system for user interface
+│   ├── .idea/              # IDE configuration files
+│   ├── public/             # Public assets (e.g., static files)
+│   ├── src/
+│   │   ├── layout/
+│   │   │   └── Navbar.js                      # Navigation bar component
+│   │   ├── pages/
+│   │   │   ├── Home.js                        # Homepage component
+│   │   │   └── Tickets.js                     # Ticket listing component
+│   │   ├── App.css                            # Global CSS styles
+│   │   ├── App.js                             # Main application component
+│   │   ├── App.test.js                        # Tests for App.js
+│   │   ├── index.css                          # CSS for index page
+│   │   ├── index.js                           # Entry point for React app
+│   │   ├── logo.svg                           # Application logo
+│   │   ├── reportWebVitals.js                 # Web performance reporting
+│   │   └── setupTests.js                      # Setup for unit testing
+│   ├── package-lock.json                      # Dependency lock file
+│   ├── package.json                           # Node.js project configuration
+│   └── README.md                              # Documentation for frontend
+│
+├── .gitignore             # Git configuration to ignore unnecessary files
+├── README.md              # Project documentation
+└── mvnw, mvnw.cmd         # Maven wrapper scripts
+
+```
+
+## 🧪 Testing
+
+### Backend Testing
+- Run backend tests:
+  ```bash
+  mvn test
+  ```
+
+### Frontend Testing
+- Run frontend tests:
+  ```bash
+  npm test
+  ```
+
+### Code Style
+- Follow Java and React community best practices
+- Use meaningful variable and function names
+- Write clean, documented, and performant code
+
+## 📝 Development Considerations
+
+### Create React App Notes
+- Curated feature set for small to medium deployments
+- No obligation to use `eject`
+- Customization possible when ready
+
+## 📞 Contact & Support
+
+Project Maintainer: Shehan Etulgama
+- GitHub: [@Shehan-11](https://github.com/Shehan-11)
+
+---
+
+**Happy Ticket Booking! 🎉**
